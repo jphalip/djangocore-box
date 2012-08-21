@@ -11,7 +11,7 @@ fi
 
 # Install pysqlite from source so that it can access all the GIS features.
 
-wget http://pysqlite.googlecode.com/files/pysqlite-2.6.3.tar.gz
+wget http://pysqlite.googlecode.com/files/pysqlite-2.6.3.tar.gz &> /dev/null
 tar xzf pysqlite-2.6.3.tar.gz
 cd pysqlite-2.6.3
 echo "[build_ext]" > setup.cfg

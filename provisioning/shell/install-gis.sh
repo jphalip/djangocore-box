@@ -14,7 +14,7 @@ fi
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >> ~/.profile
 
 # Install GEOS ---------------------------------------------------------------
-wget http://download.osgeo.org/geos/geos-3.3.0.tar.bz2
+wget http://download.osgeo.org/geos/geos-3.3.0.tar.bz2 &> /dev/null
 tar xjf geos-3.3.0.tar.bz2
 cd geos-3.3.0
 ./configure
@@ -25,8 +25,8 @@ rm -rf geos-3.3.0
 rm geos-3.3.0.tar.bz2
 
 # Install PROJ.4 -------------------------------------------------------------
-wget http://download.osgeo.org/proj/proj-4.7.0.tar.gz
-wget http://download.osgeo.org/proj/proj-datumgrid-1.5.zip
+wget http://download.osgeo.org/proj/proj-4.7.0.tar.gz &> /dev/null
+wget http://download.osgeo.org/proj/proj-datumgrid-1.5.zip &> /dev/null
 tar xzf proj-4.7.0.tar.gz
 cd proj-4.7.0/nad
 unzip ../../proj-datumgrid-1.5.zip
@@ -39,7 +39,7 @@ rm -rf proj-4.7.0
 rm proj-4.7.0.tar.gz
 
 # Install PostGIS ------------------------------------------------------------
-wget http://postgis.refractions.net/download/postgis-1.5.2.tar.gz
+wget http://postgis.refractions.net/download/postgis-1.5.2.tar.gz &> /dev/null
 tar xzf postgis-1.5.2.tar.gz
 cd postgis-1.5.2
 ./configure
@@ -50,7 +50,7 @@ rm -rf postgis-1.5.2
 rm postgis-1.5.2.tar.gz
 
 # Install GDAL ---------------------------------------------------------------
-wget http://download.osgeo.org/gdal/gdal-1.9.1.tar.gz
+wget http://download.osgeo.org/gdal/gdal-1.9.1.tar.gz &> /dev/null
 tar xzf gdal-1.9.1.tar.gz
 cd gdal-1.9.1
 ./configure
@@ -61,7 +61,7 @@ rm -rf postgis-1.5.2
 rm postgis-1.5.2.tar.gz
 
 # Install SQLite -------------------------------------------------------------
-wget http://sqlite.org/sqlite-amalgamation-3.6.23.1.tar.gz
+wget http://sqlite.org/sqlite-amalgamation-3.6.23.1.tar.gz &> /dev/null
 tar xzf sqlite-amalgamation-3.6.23.1.tar.gz
 cd sqlite-3.6.23.1
 CFLAGS="-DSQLITE_ENABLE_RTREE=1" ./configure
@@ -72,8 +72,8 @@ rm -rf sqlite-3.6.23.1/
 rm sqlite-amalgamation-3.6.23.1.tar.gz
 
 # Install Spacialite ---------------------------------------------------------
-wget http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-amalgamation-2.3.1.tar.gz
-wget http://www.gaia-gis.it/gaia-sins/spatialite-tools-sources/spatialite-tools-2.3.1.tar.gz
+wget http://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-amalgamation-2.3.1.tar.gz &> /dev/null
+wget http://www.gaia-gis.it/gaia-sins/spatialite-tools-sources/spatialite-tools-2.3.1.tar.gz &> /dev/null
 tar xzf libspatialite-amalgamation-2.3.1.tar.gz
 tar xzf spatialite-tools-2.3.1.tar.gz
 cd libspatialite-amalgamation-2.3.1
@@ -92,7 +92,7 @@ rm -rf spatialite-tools-2.3.1
 rm spatialite-tools-2.3.1.tar.gz
 
 # Download spatialite initialization file ------------------------------------
-wget http://www.gaia-gis.it/spatialite-2.3.1/init_spatialite-2.3.sql.gz
+wget http://www.gaia-gis.it/spatialite-2.3.1/init_spatialite-2.3.sql.gz &> /dev/null
 gunzip init_spatialite-2.3.sql.gz
 rm init_spatialite-2.3.sql.gz
 
