@@ -49,7 +49,7 @@ if [ -e $HOME/.python-installed ]; then
   exit 0
 fi
 
-ROOT_PATH="/vagrant"
+ROOT_PATH="/djangocore-box"
 
 # Install each specified version of Python
 for VERSION in ${VERSIONS[@]}; do
