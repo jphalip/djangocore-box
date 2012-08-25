@@ -6,36 +6,24 @@ required for running the Django core test suite with every supported version of
 Python and every supported database backend, as well as for the GIS features
 (aka GeoDjango).
 
-The versions of Python that are installed are: 2.4.6, 2.5.6, 2.6.5, 2.7.1
+The versions of Python that are installed are: 2.4.6, 2.5.6, 2.6.5, 2.7.3
 (default), and 3.2.3. The installed database backends are: SQLite, Spatialite,
-MySQL, PostgreSQL and PostGIS. Oracle are coming soon.
+MySQL, PostgreSQL and PostGIS. Oracle is coming soon.
 
-Getting started
----------------
+Preparation
+-----------
 
 First of all, you need to install the latest versions of
 [Vagrant](http://downloads.vagrantup.com/) and
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your host machine.
 
-Using the pre-packaged VM box
------------------------------
+Booting the VM
+--------------
 
-_This is coming soon_. A pre-packaged box will be available for download so
-you can get started even quicker. For now, you need to build the VM from
-scratch.
+To boot the VM, run the following commands to start the build process:
 
-Building the VM from scratch
-----------------------------
-
-Building the VM from scratch is very simple and only takes a handful of
-commands. Once started, the automatic build process will take about an hour.
-Use that time to do other work, browse the web or go out for a nice stroll in
-the park!
-
-To start the build, run the following commands to start the build process:
-
-(Legend: "`(host)`" is for commands to run on the host machine, and "`(vm)`"
-is for commands to run inside the VM)
+_Legend:_ `(host)` is for commands to run on the host machine, and `(vm)` is
+for commands to run inside the VM.
 
     (host) $ mkdir djangocore
     (host) $ cd djangocore
@@ -44,18 +32,32 @@ is for commands to run inside the VM)
     (host) $ cd djangocore-box
     (host) $ vagrant up
 
-Now, wait for about an hour. Once the build is complete, run the following
-command to SSH into the VM (still from inside the `djangocore-box/` folder):
+The first time you run `vagrant up` it will download the VM, which is about
+_1GB large_ (be warned if you have a low bandwitdh Internet connection). Every
+subsequent times, it will just boot the VM, which only takes about 30 seconds.
+
+Once the VM is up and running, type the following command to SSH into the VM
+(still from inside the `djangocore-box/` folder):
 
     (host) $ vagrant ssh
 
 Once inside the VM, you can run the tests by typing any of the pre-defined
-aliases: `runtests{2.4, 2.5, 2.6, 2.7, 3.2}-{sqlite, mysql, postgresql, spatialite}`.
+aliases: `runtests{2.4,2.5,2.6,2.7,3.2}-{sqlite,mysql,postgresql,spatialite,postgis}`.
 For example:
 
     (vm) $ runtests2.6-mysql
     (vm) $ runtests2.7-spatialite gis
     (vm) $ runtests2.5-postgresql auth forms
+
+Building the VM from scratch
+----------------------------
+
+You probably don't need to build the VM from scratch, but if you really want
+it, the steps are still pretty simple. First, rename the file `Vagrantfile` to
+a temporary name (e.g. `Vagrantfile-backup`) and then rename the file
+`Vagrantfile-build` to `Vagrantfile`. Then run `vagrant up`. The automatic
+build process will take about an hour. Use that time to do other work, browse
+the web or go out for a nice stroll in the park!
 
 Notes about the VM configuration
 --------------------------------
@@ -67,8 +69,8 @@ you can edit Django's code using your favorite editor/IDE from your host
 machine and run the tests from inside the VM.
 
 The various versions of python are installed in the `/opt` folder. The
-virtualenvs are named `py{2.4, 2.5, 2.6, 2.7, 3.2}` and are installed under
-`/home/vagrant/.virtualenvs`.
+virtualenvs are named `py{2.4,2.5,2.6,2.7,3.2}` and are installed under
+`/home/vagrant/.virtualenvs/`.
 
 `virtualenvwrapper` is also installed so you may run, for example:
 
@@ -82,6 +84,10 @@ may push those commits from the host machine too.
 The test settings are available in `/djangocore-box/test_settings/test_*.py`.
 These files are available in every virtualenv via symlinks.
 
+The VM is currently based on a lucid32 (Ubuntu 10.04.4 LTS) distribution. There
+are plans to switch to a more recent distribution, namely precise32 (Ubuntu
+12.04 LTS).
+
 Vagrant command tips
 --------------------
 
@@ -89,11 +95,15 @@ Vagrant command tips
 
     `(vm) $ exit`
 
-- To stop the VM, type:
+- To shutdown the VM, type:
 
     `(host) $ vagrant halt`
 
-- Once stopped, a VM can be restarted with:
+- To suspend the VM (i.e. freeze the VM's state), type:
+
+    `(host) $ vagrant suspend`
+
+- Once shutdown or suspended, a VM can be restarted with:
 
     `(host) $ vagrant up`
 
@@ -105,7 +115,8 @@ Vagrant command tips
 
     `(host) $ vagrant status`
 
-- To re-run the provisioning after the VM has been started:
+- To re-run the provisioning after the VM has been started (if you have built
+  the VM from scratch):
 
     `(host) $ vagrant provision`
 
@@ -115,7 +126,6 @@ Vagrant command tips
 Todo
 ----
 
-- Create a pre-packaged VM and make it available for download.
 - Install the Oracle backend.
 - Use a more recent base box (e.g. Ubuntu 12.04 LTS).
 
