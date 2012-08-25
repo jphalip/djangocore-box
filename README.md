@@ -8,7 +8,7 @@ Python and every supported database backend, as well as for the GIS features
 
 The versions of Python that are installed are: 2.4.6, 2.5.6, 2.6.5, 2.7.1
 (default), and 3.2.3. The installed database backends are: SQLite, Spatialite,
-MySQL and PostgreSQL. PostGIS and Oracle are coming soon.
+MySQL, PostgreSQL and PostGIS. Oracle are coming soon.
 
 Getting started
 ---------------
@@ -117,8 +117,7 @@ Todo
 
 - Create a pre-packaged VM and make it available for download.
 - Install the Oracle backend.
-- Finish configuring the test runner for PostGIS.
-- Use a more recent base box.
+- Use a more recent base box (e.g. Ubuntu 12.04 LTS).
 
 Credits
 -------

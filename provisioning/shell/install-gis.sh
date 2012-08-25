@@ -11,8 +11,6 @@ if [ -e $HOME/.gis-installed ]; then
   exit 0
 fi
 
-echo "export LD_LIBRARY_PATH=/usr/local/lib" >> ~/.profile
-
 # Install GEOS ---------------------------------------------------------------
 wget http://download.osgeo.org/geos/geos-3.3.0.tar.bz2 &> /dev/null
 tar xjf geos-3.3.0.tar.bz2
@@ -37,12 +35,13 @@ sudo make install
 cd ..
 rm -rf proj-4.7.0
 rm proj-4.7.0.tar.gz
+rm proj-datumgrid-1.5.zip
 
 # Install PostGIS ------------------------------------------------------------
 wget http://postgis.refractions.net/download/postgis-1.5.2.tar.gz &> /dev/null
 tar xzf postgis-1.5.2.tar.gz
 cd postgis-1.5.2
-./configure
+./configure --with-xml2config=/usr/bin/xml2-config
 make
 sudo make install
 cd ..
@@ -54,11 +53,11 @@ wget http://download.osgeo.org/gdal/gdal-1.9.1.tar.gz &> /dev/null
 tar xzf gdal-1.9.1.tar.gz
 cd gdal-1.9.1
 ./configure
-make # Go get some coffee, this takes a while.
+make
 sudo make install
 cd ..
-rm -rf postgis-1.5.2
-rm postgis-1.5.2.tar.gz
+rm -rf gdal-1.9.1
+rm gdal-1.9.1.tar.gz
 
 # Install SQLite -------------------------------------------------------------
 wget http://sqlite.org/sqlite-amalgamation-3.6.23.1.tar.gz &> /dev/null

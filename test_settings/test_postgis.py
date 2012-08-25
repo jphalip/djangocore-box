@@ -1,14 +1,14 @@
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangotests',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'djangotests_gis',
         'USER': 'django',
         'HOST': 'localhost',
         'PASSWORD': 'secret',
     },
     'other': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangotests_other',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'djangotests_gis_other',
         'USER': 'django',
         'HOST': 'localhost',
         'PASSWORD': 'secret',
