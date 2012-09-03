@@ -36,6 +36,10 @@ The first time you run `vagrant up` it will download the VM, which is about
 _1GB large_ (be warned if you have a low bandwitdh Internet connection). Every
 subsequent times, it will just boot the VM, which only takes about 30 seconds.
 
+As the VM boots up, it will prompt you to enter your host machine's
+administrator password (the same that you use for logging into your host
+machine). This is required so that Vagrant can setup the NFS shared folders.
+
 Once the VM is up and running, type the following command to SSH into the VM
 (still from inside the `djangocore-box/` folder):
 

@@ -5,7 +5,7 @@
 # All rights reserved.
 
 if [ -e $HOME/.databases-created ]; then
-  echo 'Databases features already created'
+  echo 'Databases already created'
   exit 0
 fi
 

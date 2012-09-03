@@ -119,8 +119,8 @@ for VERSION in ${VERSIONS[@]}; do
   # Create symlinks and aliases for the various types of database settings
   DATABASES=( 'spatialite' 'mysql' 'postgresql' 'postgis' )
   for DATABASE in ${DATABASES[@]}; do
-    ln -fs $ROOT_PATH/test_settings/test_$DATABASE.py $HOME/.virtualenvs/py${VERSION:0:3}/lib/python${VERSION:0:3}/site-packages/test_$DATABASE.py
-    echo "alias runtests${VERSION:0:3}-$DATABASE='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION:0:3}/bin/python /django/tests/runtests.py --settings=test_$DATABASE'"  >> $HOME/.profile
+    ln -fs $ROOT_PATH/test_settings/djangocore_test_$DATABASE.py $HOME/.virtualenvs/py${VERSION:0:3}/lib/python${VERSION:0:3}/site-packages/djangocore_test_$DATABASE.py
+    echo "alias runtests${VERSION:0:3}-$DATABASE='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION:0:3}/bin/python /django/tests/runtests.py --settings=djangocore_test_$DATABASE'"  >> $HOME/.profile
   done
 
   # Django already ships with test_sqlite.py, so we use that.

@@ -37,6 +37,9 @@ Vagrant::Config.run do |config|
           :mysql => {
               :server_root_password => 'secret',
               :bind_address => '127.0.0.1'
+          },
+          :postgresql => {
+              :listen_addresses => '*'
           }})
   end
 

@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "djangocore-box-1.0-alpha"
-  config.vm.box_url = "https://dl.dropbox.com/u/3364022/Temp/djangocore-box-1.0-alpha.box"
+  config.vm.box = "djangocore-box-1.0"
+  config.vm.box_url = "https://dl.dropbox.com/u/3364022/Temp/djangocore-box-1.0.box"
   config.vm.host_name = "djangocore"
 
   # Shared folders
