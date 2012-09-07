@@ -3,7 +3,7 @@
 
 Vagrant::Config.run do |config|
   config.vm.box = "djangocore-box-1.0"
-  config.vm.box_url = "https://dl.dropbox.com/u/3364022/Temp/djangocore-box-1.0.box"
+  config.vm.box_url = "https://www.djangoproject.com/m/vms/djangocore-box-1.0.box"
   config.vm.host_name = "djangocore"
 
   # Shared folders
