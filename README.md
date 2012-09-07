@@ -13,9 +13,31 @@ MySQL, PostgreSQL and PostGIS. Oracle is coming soon.
 Preparation
 -----------
 
+### Software installation
+
 First of all, you need to install the latest versions of
 [Vagrant](http://downloads.vagrantup.com/) and
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your host machine.
+
+
+### Adding SSH keys to ssh-agent
+
+SSH-Agent will allow you to share the ssh keys on your host machine with the
+VM. This will then allow you to authenticate to remote servers, like github
+for example, from inside the VM.
+
+First, check if your keys are added to ssh-agent:
+
+    ssh-add -l
+
+If you don't have any keys, or the key you want available to the VM is not
+listed, you can add your key by running the following:
+
+    ssh-add <path_to_key>
+
+Example:
+
+    ssh-add ~/.ssh/id_rsa
 
 Booting the VM
 --------------
