@@ -34,6 +34,7 @@ To boot the VM, run the following commands to start the build process:
     (host) $ cd djangocore
     (host) $ git clone git@github.com:django/django.git  # or replace django/django.git by <your username>/django.git if you have your own fork
     (host) $ git clone git@github.com:jphalip/djangocore-box.git
+    (host) $ mkdir sandbox
     (host) $ cd djangocore-box
     (host) $ vagrant up
 
@@ -57,6 +58,14 @@ For example:
     (vm) $ runtests2.6-mysql
     (vm) $ runtests2.7-spatialite gis
     (vm) $ runtests2.5-postgresql auth forms
+
+
+Sandbox directory
+-----------------
+
+In some cases, you will want to expose test projects, or test code to your host machine. The `sandbox` directory on the host is mapped to the `/sandbox` directory on the vagrant managed VM.
+
+Any projects or code you create in `/sandbox` will be available in the `djangocore/sandbox` directory.
 
 Building the VM from scratch
 ----------------------------

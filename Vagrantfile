@@ -10,6 +10,7 @@ Vagrant::Config.run do |config|
   hosthome = "#{ENV['HOME']}/"
   config.vm.share_folder("v-djangocore-box", "/djangocore-box", ".", :nfs => true)
   config.vm.share_folder("v-django", "/django", "../django", :nfs => true)
+  config.vm.share_folder("v-sandbox", "/sandbox", "../sandbox", :nfs => true)
   config.vm.share_folder("v-hosthome", "/home/vagrant/.hosthome", hosthome)
 
   # Host-only network required to use NFS shared folders
