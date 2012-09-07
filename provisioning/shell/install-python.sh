@@ -76,6 +76,7 @@ for VERSION in ${VERSIONS[@]}; do
       wget http://python-distribute.org/distribute_setup.py &> /dev/null
       sudo python${VERSION:0:3} distribute_setup.py
       rm distribute_setup.py
+      rm distribute*.tar.gz
       wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py &> /dev/null
       sudo python${VERSION:0:3} get-pip.py
       rm get-pip.py
