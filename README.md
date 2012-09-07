@@ -20,10 +20,15 @@ First of all, you need to install the latest versions of
 Booting the VM
 --------------
 
-To boot the VM, run the following commands to start the build process:
-
 _Legend:_ `(host)` is for commands to run on the host machine, and `(vm)` is
 for commands to run inside the VM.
+
+If you have already downloaded the box file separately, then run the following
+command (otherwise skip this step):
+
+    (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0
+
+To boot the VM, run the following commands to start the build process:
 
     (host) $ mkdir djangocore
     (host) $ cd djangocore
