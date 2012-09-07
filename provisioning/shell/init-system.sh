@@ -32,9 +32,3 @@ fi
 if [ -e /home/vagrant/.hosthome/.gitignore ]; then
   ln -fs /home/vagrant/.hosthome/.gitignore /home/vagrant/.gitignore
 fi
-
-# SSH configuration-----------------------------------------------------------
-if [ -e /home/vagrant/.hosthome/.ssh/id_rsa.pub ]; then
-  ln -fs /home/vagrant/.hosthome/.ssh/id_rsa.pub /home/vagrant/.ssh/id_rsa.pub
-  ln -fs /home/vagrant/.hosthome/.ssh/id_rsa /home/vagrant/.ssh/id_rsa
-fi
