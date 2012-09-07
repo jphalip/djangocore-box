@@ -6,6 +6,8 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "https://www.djangoproject.com/m/vms/djangocore-box-1.0.box"
   config.vm.host_name = "djangocore"
 
+  config.ssh.forward_agent = true
+
   # Shared folders
   hosthome = "#{ENV['HOME']}/"
   config.vm.share_folder("v-djangocore-box", "/djangocore-box", ".", :nfs => true)

@@ -17,6 +17,24 @@ First of all, you need to install the latest versions of
 [Vagrant](http://downloads.vagrantup.com/) and
 [VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your host machine.
 
+
+Add SSH keys to ssh-agent
+-------------------------
+SSH-Agent will allow you to share the ssh keys on your host machine with the vagrant managed VM. 
+
+Check if your keys are added to ssh-agent:
+
+    ssh-add -l
+
+If you don't have any keys, or the key you want available to the vagrant managed VM is not listed, you can add your key by running the following:
+
+    ssh-add <path_to_key>
+
+Example:
+
+    ssh-add ~/.ssh/id_rsa
+
+
 Booting the VM
 --------------
 
