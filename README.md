@@ -48,7 +48,7 @@ for commands to run inside the VM.
 If you have already downloaded the box file separately, then run the following
 command (otherwise skip this step):
 
-    (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0
+    (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
 
 To boot the VM, run the following commands to start the build process:
 
