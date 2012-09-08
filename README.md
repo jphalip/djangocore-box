@@ -63,8 +63,8 @@ Then, either:
 
   This will automatically download the VM, which is about _1GB_ in size (be
   warned if you have a low bandwitdh Internet connection) and then boot it up.
-  The download will only occur the first time you run 'vagrant up'
-  Every subsequent times, it will just boot the VM, which only takes about 30
+  The download will only occur the first time you run `vagrant up`. Every
+  subsequent times, it will just boot the VM, which only takes about 30
   seconds.
 
 * Or, if you have already downloaded the box file separately (say, for example
