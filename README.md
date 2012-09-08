@@ -58,10 +58,8 @@ Then, either:
 * If you have not already downloaded the box file separately, then run the
   following commands to boot the machine.
 
-      ```
       (host) $ cd djangocore-box
       (host) $ vagrant up
-      ```
 
   This will automatically download the VM, which is about _1GB_ in size (be
   warned if you have a low bandwitdh Internet connection) and then boot it up.
@@ -73,11 +71,9 @@ Then, either:
   someone gave it to you via a flash drive), then run the following command in
   order to import the box into vagrant and boot up the VM:
 
-      ```
       (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
       (host) $ cd djangocore-box
       (host) $ vagrant up
-      ```
 
   `vagrant box add` will copy the box file to `~/.vagrant.d/boxes`, so you may
   delete the file you've dowloaded if you'd like to save some space on your
@@ -154,32 +150,32 @@ Vagrant command tips
 
 - To exit the VM and return to your host machine, simple type:
 
-    `(vm) $ exit`
+      (vm) $ exit
 
 - To shutdown the VM, type:
 
-    `(host) $ vagrant halt`
+      (host) $ vagrant halt
 
 - To suspend the VM (i.e. freeze the VM's state), type:
 
-    `(host) $ vagrant suspend`
+      (host) $ vagrant suspend
 
 - Once shutdown or suspended, a VM can be restarted with:
 
-    `(host) $ vagrant up`
+      (host) $ vagrant up
 
 - To destroy the VM, simply type:
 
-    `(host) $ vagrant destroy`
+      (host) $ vagrant destroy
 
 - To check if the VM is currently running, type:
 
-    `(host) $ vagrant status`
+      (host) $ vagrant status
 
 - To re-run the provisioning after the VM has been started (if you have built
   the VM from scratch):
 
-    `(host) $ vagrant provision`
+      (host) $ vagrant provision
 
 - More information is available in the [Vagrant documentation](http://vagrantup.com/v1/docs/index.html).
 
