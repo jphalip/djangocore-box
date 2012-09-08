@@ -150,32 +150,32 @@ Vagrant command tips
 
 - To exit the VM and return to your host machine, simple type:
 
-      (vm) $ exit
+    `(vm) $ exit`
 
 - To shutdown the VM, type:
 
-      (host) $ vagrant halt
+    `(host) $ vagrant halt`
 
 - To suspend the VM (i.e. freeze the VM's state), type:
 
-      (host) $ vagrant suspend
+    `(host) $ vagrant suspend`
 
 - Once shutdown or suspended, a VM can be restarted with:
 
-      (host) $ vagrant up
+    `(host) $ vagrant up`
 
 - To destroy the VM, simply type:
 
-      (host) $ vagrant destroy
+    `(host) $ vagrant destroy`
 
 - To check if the VM is currently running, type:
 
-      (host) $ vagrant status
+    `(host) $ vagrant status`
 
 - To re-run the provisioning after the VM has been started (if you have built
   the VM from scratch):
 
-      (host) $ vagrant provision
+    `(host) $ vagrant provision`
 
 - More information is available in the [Vagrant documentation](http://vagrantup.com/v1/docs/index.html).
 
