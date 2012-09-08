@@ -45,24 +45,43 @@ Booting the VM
 _Legend:_ `(host)` is for commands to run on the host machine, and `(vm)` is
 for commands to run inside the VM.
 
-If you have already downloaded the box file separately, then run the following
-command (otherwise skip this step):
-
-    (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
-
-To boot the VM, run the following commands to start the build process:
+Setup the initial directory layout:
 
     (host) $ mkdir djangocore
     (host) $ cd djangocore
     (host) $ git clone git@github.com:django/django.git  # or replace django/django.git by <your username>/django.git if you have your own fork
     (host) $ git clone git@github.com:jphalip/djangocore-box.git
     (host) $ mkdir sandbox
-    (host) $ cd djangocore-box
-    (host) $ vagrant up
 
-The first time you run `vagrant up` it will download the VM, which is about
-_1GB large_ (be warned if you have a low bandwitdh Internet connection). Every
-subsequent times, it will just boot the VM, which only takes about 30 seconds.
+Then, either:
+
+* If you have not already downloaded the box file separately, then run the
+  following commands to boot the machine.
+
+      ```
+      (host) $ cd djangocore-box
+      (host) $ vagrant up
+      ```
+
+  This will automatically download the VM, which is about _1GB_ in size (be
+  warned if you have a low bandwitdh Internet connection) and then boot it up.
+  The download will only occur the first time you run 'vagrant up'
+  Every subsequent times, it will just boot the VM, which only takes about 30
+  seconds.
+
+* Or, if you have already downloaded the box file separately (say, for example
+  someone gave it to you via a flash drive), then run the following command in
+  order to import the box into vagrant and boot up the VM:
+
+      ```
+      (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
+      (host) $ cd djangocore-box
+      (host) $ vagrant up
+      ```
+
+  `vagrant box add` will copy the box file to `~/.vagrant.d/boxes`, so you may
+  delete the file you've dowloaded if you'd like to save some space on your
+  hard drive.
 
 As the VM boots up, it will prompt you to enter your host machine's
 administrator password (the same that you use for logging into your host
@@ -81,14 +100,6 @@ For example:
     (vm) $ runtests2.7-spatialite gis
     (vm) $ runtests2.5-postgresql auth forms
 
-
-Sandbox directory
------------------
-
-In some cases, you will want to expose test projects, or test code to your host machine. The `sandbox` directory on the host is mapped to the `/sandbox` directory on the vagrant managed VM.
-
-Any projects or code you create in `/sandbox` will be available in the `djangocore/sandbox` directory.
-
 Building the VM from scratch
 ----------------------------
 
@@ -98,6 +109,16 @@ a temporary name (e.g. `Vagrantfile-backup`) and then rename the file
 `Vagrantfile-build` to `Vagrantfile`. Then run `vagrant up`. The automatic
 build process will take about an hour. Use that time to do other work, browse
 the web or go out for a nice stroll in the park!
+
+Sandbox directory
+-----------------
+
+In some cases, you will want to expose test projects, or test code to your host
+machine. The `sandbox` directory on the host is mapped to the `/sandbox`
+directory on the vagrant managed VM.
+
+Any projects or code you create in `/sandbox` will be available in the
+`djangocore/sandbox` directory.
 
 Notes about the VM configuration
 --------------------------------
