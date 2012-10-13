@@ -10,6 +10,7 @@ if [ ! -e /home/vagrant/.system-updated ]; then
   sudo apt-get -y update
   sudo apt-get -y install make curl gettext
   sudo apt-get -y install g++  # Needed to install python
+  sudo apt-get -y install libbz2-dev  # For bzip2 support in Python
   sudo apt-get -y install libsqlite3-dev  # For pysqlite
   sudo apt-get -y install libjpeg-dev  # For PIL
   sudo apt-get -y install postgresql-server-dev-8.4 libxml2-dev  # For postgis
