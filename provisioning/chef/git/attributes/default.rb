@@ -17,15 +17,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-case platform
+case node['platform_family']
 when 'windows'
-  set[:git][:version] = "1.7.9-preview20120201"
-  set[:git][:url] = "http://msysgit.googlecode.com/files/Git-#{node[:git][:version]}.exe"
-  set[:git][:checksum] = "0627394709375140d1e54e923983d259a60f9d8e"
+  default['git']['version'] = "1.8.0-preview20121022"
+  default['git']['url'] = "http://github.com/downloads/msysgit/git/Git-#{node['git']['version']}.exe"
+  default['git']['checksum'] = "8ec19d04912fd27d7350823c857a4807b550fa63a3744bf6fd2841de8cfa9a0f"
+  default['git']['display_name'] = "Git version #{ node['git']['version'] }"
 when "mac_os_x"
-  default[:git][:osx_dmg][:app_name]    = "git-1.7.9.4-intel-universal-snow-leopard"
-  default[:git][:osx_dmg][:volumes_dir] = "Git 1.7.9.4 Snow Leopard Intel Universal"
-  default[:git][:osx_dmg][:package_id]  = "GitOSX.Installer.git1794.git.pkg"
-  default[:git][:osx_dmg][:url]         = "http://git-osx-installer.googlecode.com/files/git-1.7.9.4-intel-universal-snow-leopard.dmg"
-  default[:git][:osx_dmg][:checksum]    = "661c3fcf765572d3978df17c7636d59e"
+  default['git']['osx_dmg']['app_name']    = "git-1.8.0-intel-universal-snow-leopard"
+  default['git']['osx_dmg']['volumes_dir'] = "Git 1.8.0 Snow Leopard Intel Universal"
+  default['git']['osx_dmg']['package_id']  = "GitOSX.Installer.git180.git.pkg"
+  default['git']['osx_dmg']['url']         = "https://github.com/downloads/timcharper/git_osx_installer/git-1.8.0-intel-universal-snow-leopard.dmg"
+  default['git']['osx_dmg']['checksum']    = "da83499f3305061792358bec26c20faa997b7ad9990713d1be2b03cbb5fbce12"
+else
+  default['git']['prefix'] = "/usr/local"
+  default['git']['version'] = "1.8.0"
+  default['git']['url'] = "https://github.com/git/git/tarball/v#{node['git']['version']}"
+  default['git']['checksum'] = "24f1895fa74a23b3d9233fa89a9ef04d83a1cd952d659720d6ea231bbd0c973c"
 end

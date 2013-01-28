@@ -13,14 +13,29 @@ if [ ! -e /home/vagrant/.system-updated ]; then
   sudo apt-get -y install libbz2-dev  # For bzip2 support in Python
   sudo apt-get -y install libsqlite3-dev  # For pysqlite
   sudo apt-get -y install libjpeg-dev  # For PIL
-  sudo apt-get -y install postgresql-server-dev-8.4 libxml2-dev  # For postgis
+  sudo apt-get -y install postgresql-server-dev-9.1 libxml2-dev  # For postgis
+  sudo apt-get -y install pkg-config  # For spatialite-tools
 
   # Requirements for headless Selenium tests
   sudo apt-get install -y xvfb firefox xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
 
   # Make sure the system uses UTF-8 so that PostgreSQL does too.
-  sudo locale-gen en_US.UTF-8
-  sudo update-locale LANG=en_US.UTF-8
+  echo "LANG=en_US.UTF-8
+  LANGUAGE=en_US.UTF-8
+  LANGUAGE=en_US.UTF-8
+  LC_CTYPE=en_US.UTF-8
+  LC_NUMERIC=en_US.UTF-8
+  LC_TIME=en_US.UTF-8
+  LC_COLLATE=en_US.UTF-8
+  LC_MONETARY=en_US.UTF-8
+  LC_MESSAGES=en_US.UTF-8
+  LC_PAPER=en_US.UTF-8
+  LC_NAME=en_US.UTF-8
+  LC_ADDRESS=en_US.UTF-8
+  LC_TELEPHONE=en_US.UTF-8
+  LC_MEASUREMENT=en_US.UTF-8
+  LC_IDENTIFICATION=en_US.UTF-8
+  LC_ALL=en_US.UTF-8" | sudo tee /etc/default/locale
 
   touch /home/vagrant/.system-updated
 fi

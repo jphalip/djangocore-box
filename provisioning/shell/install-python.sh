@@ -51,81 +51,57 @@ fi
 
 ROOT_PATH="/djangocore-box"
 
+# Make old versions of Python accessible
+sudo add-apt-repository -y ppa:fkrull/deadsnakes
+sudo apt-get -y update
+
 # Install each specified version of Python
 for VERSION in ${VERSIONS[@]}; do
-  if [ ! -d "/opt/python${VERSION:0:3}/" ]; then
-    echo "Dowloading Python ${VERSION}..."
-    wget http://python.org/ftp/python/${VERSION}/Python-${VERSION}.tgz &> /dev/null
-    echo "Installing Python ${VERSION}. This will take a few minutes..."
-    tar xvfz Python-${VERSION}.tgz
-    cd Python-${VERSION}
-    ./configure --prefix=/opt/python${VERSION:0:3}
-    make
-    sudo make install
-    if [ ${VERSION[0]} = '3' ]; then
-      sudo ln -fs /opt/python${VERSION:0:3}/bin/python3 /usr/bin/python${VERSION:0:3}
-    else
-      sudo ln -fs /opt/python${VERSION:0:3}/bin/python${VERSION:0:3} /usr/bin/python${VERSION:0:3}
-    fi
-
-    if [ $DEFAULT = $VERSION ]; then
-      # Point the default 'python' command to the specified version
-      sudo ln -fs /usr/bin/python${VERSION:0:3} /usr/bin/python
-
-      # Install pip
-      wget http://python-distribute.org/distribute_setup.py &> /dev/null
-      sudo python${VERSION:0:3} distribute_setup.py
-      rm distribute_setup.py
-      rm distribute*.tar.gz
-      wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py &> /dev/null
-      sudo python${VERSION:0:3} get-pip.py
-      rm get-pip.py
-
-      echo "export PATH=\$PATH:/opt/python${VERSION:0:3}/bin/" >> $HOME/.profile
-      export PATH=$PATH:/opt/python${VERSION:0:3}/bin/
-
-      # Set up pip cache so we don't have to download the same packages multiple times
-      echo "export PIP_DOWNLOAD_CACHE=\$HOME/.pip_download_cache" >> $HOME/.profile
-
-      # Set up virtualenvwrapper
-      sudo /opt/python${VERSION:0:3}/bin/pip install virtualenv virtualenvwrapper
-      echo "export WORKON_HOME=\$HOME/.virtualenvs"  >> $HOME/.profile
-      echo "source /opt/python${VERSION:0:3}/bin/virtualenvwrapper.sh" >> $HOME/.profile
-      mkdir /home/vagrant/.virtualenvs
-    fi
-
-    # Cleanup
-    cd ..
-    sudo rm Python-${VERSION}.tgz
-    sudo rm -rf Python-${VERSION}
+  if [ ! -d "/usr/bin/python${VERSION}/" ]; then
+    sudo apt-get -y install python${VERSION} python${VERSION}-dev
   fi
 done
 
 
-# Remove the pre-installed version of Python
-sudo rm /usr/bin/python2
-sudo rm -rf /usr/local/lib/python2.6
+# Install pip
+wget http://python-distribute.org/distribute_setup.py &> /dev/null
+sudo python2.7 distribute_setup.py
+rm distribute_setup.py
+rm distribute*.tar.gz
+wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py &> /dev/null
+sudo python2.7 get-pip.py
+rm get-pip.py
+
+# Set up pip cache so we don't have to download the same packages multiple times
+echo "export PIP_DOWNLOAD_CACHE=\$HOME/.pip_download_cache" >> $HOME/.profile
+
+# Set up virtualenvwrapper
+sudo /usr/local/bin/pip install virtualenv==1.7.2 virtualenvwrapper  # virtualenv > 1.7.2 doesn't support Python 2.4
+echo "export WORKON_HOME=\$HOME/.virtualenvs"  >> $HOME/.profile
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> $HOME/.profile
+mkdir /home/vagrant/.virtualenvs
+
 
 
 # Create the virtualenvs
 for VERSION in ${VERSIONS[@]}; do
-  /opt/python${DEFAULT:0:3}/bin/virtualenv $HOME/.virtualenvs/py${VERSION:0:3} --system-site-packages --python=/usr/bin/python${VERSION:0:3}
-  if [ -e "$ROOT_PATH/requirements/requirements-python${VERSION:0:3}.txt" ]; then
-    REQUIREMENTS_TXT=requirements-python${VERSION:0:3}.txt
+  /usr/local/bin/virtualenv $HOME/.virtualenvs/py${VERSION} --system-site-packages --python=/usr/bin/python${VERSION}
+  if [ -e "$ROOT_PATH/requirements/requirements-python${VERSION}.txt" ]; then
+    REQUIREMENTS_TXT=requirements-python${VERSION}.txt
   else
     REQUIREMENTS_TXT=requirements.txt
   fi
-  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION:0:3}/bin/pip install -r $ROOT_PATH/requirements/$REQUIREMENTS_TXT
+  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION}/bin/pip install -r $ROOT_PATH/requirements/$REQUIREMENTS_TXT
 
   # Create symlinks and aliases for the various types of database settings
   DATABASES=( 'spatialite' 'mysql' 'postgresql' 'postgis' )
   for DATABASE in ${DATABASES[@]}; do
-    ln -fs $ROOT_PATH/test_settings/djangocore_test_$DATABASE.py $HOME/.virtualenvs/py${VERSION:0:3}/lib/python${VERSION:0:3}/site-packages/djangocore_test_$DATABASE.py
-    echo "alias runtests${VERSION:0:3}-$DATABASE='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION:0:3}/bin/python /django/tests/runtests.py --settings=djangocore_test_$DATABASE'"  >> $HOME/.profile
+    ln -fs $ROOT_PATH/test_settings/djangocore_test_$DATABASE.py $HOME/.virtualenvs/py${VERSION}/lib/python${VERSION}/site-packages/djangocore_test_$DATABASE.py
+    echo "alias runtests${VERSION}-$DATABASE='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION}/bin/python /django/tests/runtests.py --settings=djangocore_test_$DATABASE'"  >> $HOME/.profile
   done
 
   # Django already ships with test_sqlite.py, so we use that.
-  echo "alias runtests${VERSION:0:3}-sqlite='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION:0:3}/bin/python /django/tests/runtests.py --settings=test_sqlite'"  >> $HOME/.profile
+  echo "alias runtests${VERSION}-sqlite='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION}/bin/python /django/tests/runtests.py --settings=test_sqlite'"  >> $HOME/.profile
 done
 
 

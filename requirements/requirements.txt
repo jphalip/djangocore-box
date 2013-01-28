@@ -5,5 +5,5 @@ Docutils==0.9.1
 python-memcached==1.48
 PIL==1.1.7
 mysql-python==1.2.3
-psycopg2==2.4.5
+psycopg2==2.4.6
 Sphinx==1.1.3

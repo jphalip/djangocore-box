@@ -21,8 +21,8 @@ echo 'CREATE DATABASE djangotests_other' | mysql --user=root --password=secret
 # Postgesql ------------------------------------------------------------------
 
 # Recreate the cluster so that it uses the UTF-8 encoding
-sudo -u postgres pg_dropcluster --stop 8.4 main
-sudo -u postgres pg_createcluster --start -e UTF-8 8.4 main
+sudo -u postgres pg_dropcluster --stop 9.1 main
+sudo -u postgres pg_createcluster --start -e UTF-8 9.1 main
 
 echo "CREATE USER django WITH SUPERUSER PASSWORD 'secret';" | sudo -u postgres psql
 sudo -u postgres createdb -O django djangotests
@@ -31,10 +31,9 @@ sudo -u postgres createdb -O django djangotests_other
 
 # PostGIS --------------------------------------------------------------------
 sudo -u postgres createdb -U postgres -E UTF8 template_postgis
-sudo -u postgres createlang -d template_postgis plpgsql
 echo "UPDATE pg_database SET datistemplate='true' WHERE datname='template_postgis';"  | sudo -u postgres psql
-sudo -u postgres psql -d template_postgis -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql
-sudo -u postgres psql -d template_postgis -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql
+sudo -u postgres psql -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-2.0/postgis.sql
+sudo -u postgres psql -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-2.0/spatial_ref_sys.sql
 sudo -u postgres psql -d template_postgis -c "GRANT ALL ON geometry_columns TO PUBLIC;"
 sudo -u postgres psql -d template_postgis -c "GRANT ALL ON spatial_ref_sys TO PUBLIC;"
 sudo -u postgres createdb -T template_postgis -O django djangotests_gis

@@ -141,9 +141,7 @@ may push those commits from the host machine too.
 The test settings are available in `/djangocore-box/test_settings/test_*.py`.
 These files are available in every virtualenv via symlinks.
 
-The VM is currently based on a lucid32 (Ubuntu 10.04.4 LTS) distribution. There
-are plans to switch to a more recent distribution, namely precise32 (Ubuntu
-12.04 LTS).
+The VM is based on a Ubuntu 12.04 LTS 64 bits distribution.
 
 Vagrant command tips
 --------------------
@@ -184,7 +182,6 @@ Todo
 ----
 
 - Install the Oracle backend.
-- Use a more recent base box (e.g. Ubuntu 12.04 LTS).
 
 Credits
 -------

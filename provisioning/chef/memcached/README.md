@@ -7,9 +7,18 @@ memcache via runit.
 Requirements
 ============
 
-Tested on Ubuntu 8.10-9.10. Uses the memcached init script by default.
 A runit service can be set up for instances using the
 `memcache_instance` definition.
+
+## Platforms:
+
+Tested on:
+
+* Ubuntu 10.04, 12.04
+* CentOS 5.8, 6.3
+
+May work on any Debian or Red Hat family distributions with or without
+modification.
 
 ## Cookbooks:
 
@@ -29,13 +38,19 @@ service.
 Usage
 =====
 
-Simply set the attributes and it will configure the /etc/memcached.conf file. If you want to use multiple memcached instances, you'll need to modify the recipe to disable the startup script and the template in the default recipe.
+Simply set the attributes and it will configure the
+/etc/memcached.conf file. If you want to use multiple memcached
+instances, you'll need to modify the recipe to disable the startup
+script and the template in the default recipe.
 
-Use the define, memcached_instance, to set up a runit service for the named memcached instance.
+Use the define, memcached_instance, to set up a runit service for the
+named memcached instance.
 
-  memcached_instance "myproj" 
+    memcached_instance "myproj"
 
-The recipe also reads in whether to start up memcached from a /etc/default/memcached "ENABLE_MEMCACHED" setting, which is "yes" by default.
+The recipe also reads in whether to start up memcached from a
+/etc/default/memcached "ENABLE_MEMCACHED" setting, which is "yes" by
+default.
 
 License and Author
 ==================
@@ -43,7 +58,7 @@ License and Author
 Author:: Joshua Timberman (<joshua@opscode.com>)
 Author:: Joshua Sierles (<joshua@37signals.com>)
 
-Copyright:: 2009, Opscode, Inc
+Copyright:: 2009-2012, Opscode, Inc
 Copyright:: 2009, 37signals
 
 Licensed under the Apache License, Version 2.0 (the "License");
