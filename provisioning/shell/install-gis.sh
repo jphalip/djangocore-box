@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Author: Julien Phalip
-# Copyright (c) Django Software Foundation and individual contributors.
-# All rights reserved.
-
-# sudo apt-get install -y libxml2-dev binutils
+# Copyright (c) 2013 Julien Phalip and contributors.
+# Licensed under the BSD license.
 
 if [ -e $HOME/.gis-installed ]; then
   echo 'GIS features already installed'

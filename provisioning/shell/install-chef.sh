@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Author: Julien Phalip
-# Copyright (c) Django Software Foundation and individual contributors.
-# All rights reserved.
+# Copyright (c) 2013 Julien Phalip and contributors.
+# Licensed under the BSD license.
 
 if [ $# != 1 ]; then
   echo "Usage: $0 \<version\>"

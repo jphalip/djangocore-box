@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Author: Julien Phalip
-# Copyright (c) Django Software Foundation and individual contributors.
-# All rights reserved.
+# Copyright (c) 2013 Julien Phalip and contributors.
+# Licensed under the BSD license.
 
 if [ -e $HOME/.databases-created ]; then
   echo 'Databases already created'
