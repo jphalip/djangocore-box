@@ -46,7 +46,7 @@ Vagrant::Config.run do |config|
           }})
   end
 
-  config.vm.provision :shell, :inline => "su vagrant -c '/djangocore-box/provisioning/shell/install-python.sh 2.4 2.5 2.6 3.3'"  # 2.7 is already installed
+  config.vm.provision :shell, :inline => "su vagrant -c '/djangocore-box/provisioning/shell/install-python.sh 2.4 2.5 2.6 2.7 3.3'"
   config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/install-gis.sh"
   config.vm.provision :shell, :inline => "su vagrant -c '/djangocore-box/provisioning/shell/install-pysqlite.sh 2.4 2.5 2.6 2.7'"  # pysqlite isn't Python 3 compatible
   config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/create-databases.sh"

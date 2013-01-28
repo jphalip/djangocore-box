@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "djangocore-box-1.1-alpha"
-  config.vm.box_url = "https://dl.dropbox.com/u/3364022/djangocore-box/djangocore-box-1.1-alpha.box"
+  config.vm.box = "djangocore-box-1.1-alpha-2"
+  config.vm.box_url = "https://dl.dropbox.com/u/3364022/djangocore-box/djangocore-box-1.1-alpha-2.box"
   config.vm.host_name = "djangocore"
 
   config.ssh.forward_agent = true
