@@ -58,8 +58,8 @@ Then, either:
 * If you have not already downloaded the box file separately, then run the
   following commands to boot the machine.
 
-    (host) $ cd djangocore-box
-    (host) $ vagrant up
+        (host) $ cd djangocore-box
+        (host) $ vagrant up
 
   This will automatically download the VM, which is about _1GB_ in size (be
   warned if you have a low bandwitdh Internet connection) and then boot it up.
@@ -71,9 +71,9 @@ Then, either:
   someone gave it to you via a flash drive), then run the following command in
   order to import the box into vagrant and boot up the VM:
 
-    (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
-    (host) $ cd djangocore-box
-    (host) $ vagrant up
+        (host) $ vagrant box add djangocore-box-1.0 path/to/your/local/copy/of/djangocore-box-1.0.box
+        (host) $ cd djangocore-box
+        (host) $ vagrant up
 
   `vagrant box add` will copy the box file to `~/.vagrant.d/boxes`, so you may
   delete the file you've dowloaded if you'd like to save some space on your
