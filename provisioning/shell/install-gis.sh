@@ -110,11 +110,6 @@ rm -rf expat-2.1.0*
 rm -rf freexl-1.0.0*
 rm -rf readosm-1.0.0*
 
-# Download spatialite initialization file ------------------------------------
-wget http://www.gaia-gis.it/spatialite-3.0.1/init_spatialite-3.0.sql.gz &> /dev/null
-gunzip init_spatialite-3.0.sql.gz
-rm init_spatialite-3.0.sql.gz
-
 
 # Create a flag file to prevent this script from being run in subsequent vagrant-up's.
 touch $HOME/.gis-installed
