@@ -141,6 +141,9 @@ may push those commits from the host machine too.
 The test settings are available in `/djangocore-box/test_settings/test_*.py`.
 These files are available in every virtualenv via symlinks.
 
+Firefox is pre-installed so that Django's selenium tests can be run in headless
+mode (by default using `DISPLAY=:99`).
+
 The VM is based on a Ubuntu 12.04 LTS 64 bits distribution.
 
 Vagrant command tips
