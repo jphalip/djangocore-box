@@ -17,4 +17,7 @@ Vagrant::Config.run do |config|
 
   # Host-only network required to use NFS shared folders
   config.vm.network :hostonly, "1.2.3.4"
+
+  # Start the virtual display (for Selenium tests)
+  config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/virtual-display.sh"
 end
