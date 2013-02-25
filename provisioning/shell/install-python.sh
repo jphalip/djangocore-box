@@ -103,6 +103,8 @@ for VERSION in ${VERSIONS[@]}; do
   echo "alias runtests${VERSION}-sqlite='PYTHONPATH=/django $HOME/.virtualenvs/py${VERSION}/bin/python /django/tests/runtests.py --settings=test_sqlite'"  >> $HOME/.profile
 done
 
+echo "alias enable-selenium='export DISPLAY=:99; Xvfb -ac :99 2>/dev/null &'"  >> $HOME/.profile
+
 
 # Create a flag file to prevent this script from being run in subsequent vagrant-up's.
 touch $HOME/.python-installed
