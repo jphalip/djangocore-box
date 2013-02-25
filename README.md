@@ -96,6 +96,10 @@ For example:
     (vm) $ runtests2.7-spatialite gis
     (vm) $ runtests2.5-postgresql auth forms
 
+If you would like to also run selenium tests (such as admin_inlines), you must explicitly do so -- otherwise they will be skipped:
+
+    (vm) $ enable-selenium
+
 Building the VM from scratch
 ----------------------------
 
