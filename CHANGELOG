@@ -1,0 +1,11 @@
+1.1 - Coming soon...
+====================
+
+- Upgraded the Ubuntu distribution to 12.04 LTS 64 bits.
+- Upgraded every software to their latest versions.
+- Enabled Selenium tests on headless Firefox.
+
+1.0 - September 4, 2012
+=======================
+
+- Initial launch
