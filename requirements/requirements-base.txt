@@ -7,4 +7,3 @@ PIL==1.1.7
 mysql-python==1.2.3
 psycopg2==2.4.6
 Sphinx==1.1.3
-selenium==2.30.0
