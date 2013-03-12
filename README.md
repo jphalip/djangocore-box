@@ -142,7 +142,10 @@ The test settings are available in `/djangocore-box/test_settings/test_*.py`.
 These files are available in every virtualenv via symlinks.
 
 Firefox is pre-installed so that Django's selenium tests can be run in headless
-mode (by default using `DISPLAY=:99`).
+mode in a virtual display (with the id `:99`). For example, you may run a
+specific test like so:
+
+    (vm) $ runtests2.6-sqlite admin_inlines.SeleniumFirefoxTests --selenium
 
 The VM is based on a Ubuntu 12.04 LTS 64 bits distribution.
 
