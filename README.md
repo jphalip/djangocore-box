@@ -7,7 +7,7 @@ Python and every supported database backend, as well as for the GIS features
 (aka GeoDjango).
 
 The versions of Python that are installed are: 2.4.6, 2.5.6, 2.6.5, 2.7.3
-(default), and 3.2.3. The installed database backends are: SQLite, Spatialite,
+(default), and 3.3. The installed database backends are: SQLite, Spatialite,
 MySQL, PostgreSQL and PostGIS. Oracle is coming soon.
 
 Preparation
@@ -89,7 +89,7 @@ Once the VM is up and running, type the following command to SSH into the VM
     (host) $ vagrant ssh
 
 Once inside the VM, you can run the tests by typing any of the pre-defined
-aliases: `runtests{2.4,2.5,2.6,2.7,3.2}-{sqlite,mysql,postgresql,spatialite,postgis}`.
+aliases: `runtests{2.4,2.5,2.6,2.7,3.3}-{sqlite,mysql,postgresql,spatialite,postgis}`.
 For example:
 
     (vm) $ runtests2.6-mysql
@@ -126,12 +126,12 @@ you can edit Django's code using your favorite editor/IDE from your host
 machine and run the tests from inside the VM.
 
 The various versions of python are installed in the `/opt` folder. The
-virtualenvs are named `py{2.4,2.5,2.6,2.7,3.2}` and are installed under
+virtualenvs are named `py{2.4,2.5,2.6,2.7,3.3}` and are installed under
 `/home/vagrant/.virtualenvs/`.
 
 `virtualenvwrapper` is also installed so you may run, for example:
 
-    (vm) $ workon py3.2
+    (vm) $ workon py3.3
 
 You should be able to push commits to your fork of django on github directly
 from inside the VM, as the SSH and git configuration files inside the VM are
