@@ -71,7 +71,7 @@ Then, either:
   someone gave it to you via a flash drive), then run the following command in
   order to import the box into vagrant and boot up the VM:
 
-        (host) $ vagrant box add djangocore-box-1.1-alpha-2 path/to/your/local/copy/of/djangocore-box-1.1-alpha-2.box
+        (host) $ vagrant box add djangocore-box-1.1 path/to/your/local/copy/of/djangocore-box-1.1.box
         (host) $ cd djangocore-box
         (host) $ vagrant up
 
