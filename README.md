@@ -149,6 +149,16 @@ specific test like so:
 
 The VM is based on a Ubuntu 12.04 LTS 64 bits distribution.
 
+Building the documentation
+--------------------------
+
+To build the documentation, simply activate one of the virtualenvs and run the
+Sphinx build command:
+
+    workon py2.7
+    cd /django/docs
+    make html
+
 Vagrant command tips
 --------------------
 
