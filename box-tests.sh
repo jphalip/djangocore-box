@@ -1,3 +1,11 @@
+#!/bin/bash
+
+# Smoke tests for the djangocore-box.
+# To run this script inside the VM:
+# $ source /djangocore-box/box-tests.sh
+
+set -x  # To output the commands as they are run.
+
 runtests2.6-spatialite gis
 runtests2.6-postgis gis
 runtests2.6-sqlite auth
