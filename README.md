@@ -1,14 +1,17 @@
 djangocore-box: A virtual machine for running the Django core test suite
 ========================================================================
 
-The djangocore-box is a virtual machine (VM) containing all the libraries
-required for running the Django core test suite with every supported version of
-Python and every supported database backend, as well as for the GIS features
-(aka GeoDjango).
+The djangocore-box is a virtual machine (VM) containing all the programs and
+libraries required for running the Django core test suite in multiple different
+environments. Every supported version of Python (2.4, 2.5, 2.6, 2.7 and 3.3) is
+pre-installed as well as every supported database backend (SQLite, Spatialite,
+MySQL, PostgreSQL and PostGIS — Oracle is coming soon), all the GeoDjango
+dependencies and a number of third-party components such as Memcached and
+Python libraries like Sphinx, the Python Imaging Library, Textile and Markdown.
 
-The versions of Python that are installed are: 2.4.6, 2.5.6, 2.6.5, 2.7.3
-(default), and 3.3. The installed database backends are: SQLite, Spatialite,
-MySQL, PostgreSQL and PostGIS. Oracle is coming soon.
+This is particularly useful to anybody interested in contributing to Django
+core without having to go through the trouble of installing and configuring all
+the software required to run the tests in all these environments.
 
 Preparation
 -----------
@@ -202,4 +205,5 @@ Todo
 Credits
 -------
 
-djangocore-box was contributed by [Julien Phalip](https://twitter.com/julienphalip).
+djangocore-box was authored by [Julien Phalip](https://twitter.com/julienphalip)
+and [other contributors](AUTHORS).
