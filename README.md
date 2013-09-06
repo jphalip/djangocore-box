@@ -148,7 +148,7 @@ Firefox is pre-installed so that Django's selenium tests can be run in headless
 mode in a virtual display (with the id `:99`). For example, you may run a
 specific test like so:
 
-    (vm) $ runtests2.6-sqlite admin_inlines.SeleniumFirefoxTests --selenium
+    (vm) $ runtests2.6-sqlite admin_inlines.tests.SeleniumFirefoxTests --selenium
 
 The VM is based on a Ubuntu 12.04 LTS 64 bits distribution.
 
