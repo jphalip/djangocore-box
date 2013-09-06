@@ -18,6 +18,9 @@ if [ ! -e /home/vagrant/.system-updated ]; then
   # Requirements for headless Selenium tests
   sudo apt-get install -y xvfb firefox xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
 
+  #set the system to use en_US.utf8 so that all python tests will pass correctly.
+  echo 'LC_ALL="en_US.utf8"' > "etc/default/locale"
+
   # Make sure the system uses UTF-8 so that PostgreSQL does too.
   echo "LANG=en_US.UTF-8
   LANGUAGE=en_US.UTF-8
