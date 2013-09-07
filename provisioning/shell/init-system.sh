@@ -47,3 +47,8 @@ fi
 if [ -e /home/vagrant/.hosthome/.gitignore ]; then
   ln -fs /home/vagrant/.hosthome/.gitignore /home/vagrant/.gitignore
 fi
+
+# Fixes issue #11
+if [ -e /home/vagrant/postinstall.sh ]; then 
+  rm -f /home/vagrant/postinstall.sh
+fi
