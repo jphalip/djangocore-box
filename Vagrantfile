@@ -10,10 +10,13 @@ Vagrant::Config.run do |config|
 
   # Shared folders
   hosthome = "#{ENV['HOME']}/"
-  config.vm.share_folder("v-djangocore-box", "/djangocore-box", ".", :nfs => true)
-  config.vm.share_folder("v-django", "/django", "../django", :nfs => true)
-  config.vm.share_folder("v-sandbox", "/sandbox", "../sandbox", :nfs => true)
+  utilize_nfs = (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) == nil
+  
+  config.vm.share_folder("v-djangocore-box", "/djangocore-box", ".", :nfs => utilize_nfs)
+  config.vm.share_folder("v-django", "/django", "../django", :nfs => utilize_nfs)
+  config.vm.share_folder("v-sandbox", "/sandbox", "../sandbox", :nfs => utilize_nfs)
   config.vm.share_folder("v-hosthome", "/home/vagrant/.hosthome", hosthome)
+  
 
   # Host-only network required to use NFS shared folders
   config.vm.network :hostonly, "1.2.3.4"
