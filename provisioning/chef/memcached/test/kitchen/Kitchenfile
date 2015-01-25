@@ -1,3 +1,0 @@
-cookbook "memcached" do
-  runtimes []
-end
