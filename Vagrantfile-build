@@ -1,41 +1,41 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/trusty64"
   config.vm.host_name = "djangocore"
-  config.vm.customize ['modifyvm', :id, '--memory', '2048']
+
+  config.vm.provider "virtualbox" do |vb|
+      vb.customize ['modifyvm', :id, '--memory', '2048']
+  end
 
   config.ssh.forward_agent = true
 
   # Shared folders
   hosthome = "#{ENV['HOME']}/"
-  config.vm.share_folder("v-djangocore-box", "/djangocore-box", ".", :nfs => true)
-  config.vm.share_folder("v-django", "/django", "../django", :nfs => true)
-  config.vm.share_folder("v-hosthome", "/home/vagrant/.hosthome", hosthome)
+  config.vm.synced_folder ".", "/djangocore-box", type: "nfs"
+  config.vm.synced_folder "../django", "/django", type: "nfs"
+  config.vm.synced_folder hosthome, "/home/vagrant/.hosthome"
 
   # Host-only network required to use NFS shared folders
-  config.vm.network :hostonly, "1.2.3.4"
+  config.vm.network "private_network", ip: "1.2.3.4"
 
   # Provisioning -------------------------------------------------------------
 
-  config.vm.provision :shell, :inline => "/djangocore-box/provisioning/shell/install-chef.sh 10.16.2"
+  config.vm.provision :shell, :inline => "/djangocore-box/provisioning/shell/install-chef.sh 11.8.2"
   config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/init-system.sh"
 
   config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "provisioning/chef"
       chef.log_level = :debug
-      chef.run_list = [
-          "recipe[git]",
-          "recipe[openssl]",
-          "recipe[memcached]",
-          "recipe[mysql]",
-          "recipe[mysql::client]",
-          "recipe[mysql::server]",
-          "recipe[postgresql]",
-          "recipe[postgresql::client]",
-          "recipe[postgresql::server]"]
+      chef.add_recipe "git"
+      chef.add_recipe "openssl"
+      chef.add_recipe "memcached"
+      chef.add_recipe "mysql::client"
+      chef.add_recipe "mysql::server"
+      chef.add_recipe "postgresql"
+      chef.add_recipe "postgresql::client"
+      chef.add_recipe "postgresql::server"
       chef.json.merge!({
           :mysql => {
               :server_root_password => 'secret',
@@ -52,6 +52,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "su vagrant -c '/djangocore-box/provisioning/shell/install-python.sh 2.4 2.5 2.6 2.7 3.3'"
   config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/install-gis.sh"
   config.vm.provision :shell, :inline => "su vagrant -c '/djangocore-box/provisioning/shell/install-pysqlite.sh 2.4 2.5 2.6 2.7'"  # pysqlite isn't Python 3 compatible
-  config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/create-databases.sh"
+  #config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/create-databases.sh"
   config.vm.provision :shell, :inline => "su vagrant -c /djangocore-box/provisioning/shell/virtual-display.sh"
 end
