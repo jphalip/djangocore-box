@@ -1,6 +1,0 @@
--r requirements-base.txt
-selenium==2.31.0
-python-memcached
-mock
-
-

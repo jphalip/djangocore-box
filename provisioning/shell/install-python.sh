@@ -85,7 +85,9 @@ mkdir /home/vagrant/.virtualenvs
 # Create the virtualenvs
 for VERSION in ${VERSIONS[@]}; do
   /usr/local/bin/virtualenv $HOME/.virtualenvs/py${VERSION} --system-site-packages --python=/usr/bin/python${VERSION}
-  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION}/bin/pip install -r $ROOT_PATH/requirements/requirements-${VERSION}.txt
+  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION}/bin/pip install -r /django/tests/requirements/py${VERSION:0:1}.txt
+  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION}/bin/pip install -r /django/tests/requirements/mysql.txt
+  PIP_DOWNLOAD_CACHE=$HOME/.pip_download_cache $HOME/.virtualenvs/py${VERSION}/bin/pip install -r /django/tests/requirements/postgres.txt
 
   # Create symlinks and aliases for the various types of database settings
   DATABASES=( 'spatialite' 'mysql' 'postgresql' 'postgis' )
