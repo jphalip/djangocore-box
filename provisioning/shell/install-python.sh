@@ -67,10 +67,6 @@ done
 
 
 # Install pip
-wget http://python-distribute.org/distribute_setup.py &> /dev/null
-sudo python2.7 distribute_setup.py
-rm distribute_setup.py
-rm distribute*.tar.gz
 wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py &> /dev/null
 sudo python2.7 get-pip.py
 rm get-pip.py
@@ -79,7 +75,7 @@ rm get-pip.py
 echo "export PIP_DOWNLOAD_CACHE=\$HOME/.pip_download_cache" >> $HOME/.profile
 
 # Set up virtualenvwrapper
-sudo /usr/local/bin/pip install virtualenv==1.7.2 virtualenvwrapper  # virtualenv > 1.7.2 doesn't support Python 2.4
+sudo /usr/local/bin/pip install virtualenv wheel virtualenvwrapper
 echo "export WORKON_HOME=\$HOME/.virtualenvs"  >> $HOME/.profile
 echo "source /usr/local/bin/virtualenvwrapper.sh" >> $HOME/.profile
 mkdir /home/vagrant/.virtualenvs
