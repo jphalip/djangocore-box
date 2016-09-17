@@ -1,3 +1,5 @@
+> **_NOTE_: THIS PROJECT IS NOW UNMAINTAINED. PLEASE SEE https://github.com/django/django-box FOR THE UPDATED VERSION.**
+
 djangocore-box: A virtual machine for running the Django core test suite
 ========================================================================
 
