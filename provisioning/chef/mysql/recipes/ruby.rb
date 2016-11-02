@@ -1,11 +1,9 @@
 #
-# Cookbook Name:: mysql
-# Recipe:: ruby
+# Author:: Seth Chisamore (<schisamo@opscode.com>)
+# Cookbook Name:: chef_handlers
+# Recipe:: default
 #
-# Author:: Jesse Howarth (<him@jessehowarth.com>)
-# Author:: Jamie Winsor (<jamie@vialstudios.com>)
-#
-# Copyright 2008-2012, Opscode, Inc.
+# Copyright 2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,17 +18,16 @@
 # limitations under the License.
 #
 
-execute "apt-get update" do
-  ignore_failure true
+Chef::Log.info("Chef Handlers will be at: #{node['chef_handler']['handler_path']}")
+
+remote_directory node['chef_handler']['handler_path'] do
+  source 'handlers'
+  # Just inherit permissions on Windows, don't try to set POSIX perms
+  if node["platform"] != "windows"
+    owner node['chef_handler']['root_user']
+    group node['chef_handler']['root_group']
+    mode "0755"
+    recursive true
+  end
   action :nothing
-end.run_action(:run) if node['platform_family'] == "debian"
-
-node.set['build_essential']['compiletime'] = true
-include_recipe "build-essential"
-include_recipe "mysql::client"
-
-node['mysql']['client']['packages'].each do |mysql_pack|
-  resources("package[#{mysql_pack}]").run_action(:install)
-end
-
-chef_gem "mysql"
+end.run_action(:create)

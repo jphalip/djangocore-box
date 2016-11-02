@@ -12,7 +12,8 @@ if [ ! -e /home/vagrant/.system-updated ]; then
   sudo apt-get -y install libbz2-dev  # For bzip2 support in Python
   sudo apt-get -y install libsqlite3-dev  # For pysqlite
   sudo apt-get -y install libjpeg-dev  # For PIL
-  sudo apt-get -y install postgresql-server-dev-9.1 libxml2-dev  # For postgis
+  sudo apt-get -y install libffi-dev
+  sudo apt-get -y install postgresql-server-dev-9.3 postgresql-contrib-9.3 libxml2-dev   # For postgis
   sudo apt-get -y install pkg-config  # For spatialite-tools
 
   # Requirements for headless Selenium tests

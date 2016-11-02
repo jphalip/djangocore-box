@@ -16,7 +16,7 @@
 
 require File.expand_path('../support/helpers', __FILE__)
 
-describe 'mycookbook::default' do
+describe 'postgresql::server' do
   include Helpers::Postgresql
 
   it 'installs the postgresql server packages' do
@@ -26,7 +26,7 @@ describe 'mycookbook::default' do
   end
 
   it 'runs the postgresql service' do
-    service(node['postgresql']['server']['service_name']).must_be_running
+    service((node['postgresql']['server']['service_name'] || 'postgresql')).must_be_running
   end
 
   it 'can connect to postgresql' do

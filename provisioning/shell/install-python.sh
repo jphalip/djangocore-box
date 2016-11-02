@@ -54,6 +54,10 @@ ROOT_PATH="/djangocore-box"
 sudo add-apt-repository -y ppa:fkrull/deadsnakes
 sudo apt-get -y update
 
+if [ ! -e /usr/lib/python2.7/_sysconfigdata_nd.py ]; then
+    sudo ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
+fi
+
 # Install each specified version of Python
 for VERSION in ${VERSIONS[@]}; do
   if [ ! -d "/usr/bin/python${VERSION}/" ]; then

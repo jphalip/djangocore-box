@@ -14,15 +14,22 @@ selection logic. This attribute was introduced in Ohai v0.6.12.
 
 ## Platform:
 
-* Debian/Ubuntu
-* ArchLinux
+The following platform families are supported:
+
+* Debian
+* Arch
+* RHEL
+* Fedora
+* FreeBSD (client only)
+* Mac OS X (10.6.0+)
 * Windows
-* Mac OSX
 
 ## Cookbooks:
 
-###
-* runit
+* runit (for `git::server`)
+* build-essential (for `git::source`)
+* dmg (for OS X installation)
+* yum (for RHEL 5 installation)
 
 ### Windows Dependencies
 The [`windows_package`](https://github.com/opscode-cookbooks/windows#windows_package) resource from the Windows cookbook is required to
@@ -38,7 +45,7 @@ The following attributes are platform-specific.
 * `node['git']['version']` - git version to install
 * `node['git']['url']` - URL to git package
 * `node['git']['checksum']` - package SHA256 checksum
-* `node['git']['display_name']` - `windows_package` resource Display Name (makes the package install idempotent) 
+* `node['git']['display_name']` - `windows_package` resource Display Name (makes the package install idempotent)
 
 #### Mac OS X
 
@@ -86,16 +93,15 @@ To install git server:
 
     include_recipe "git::server"
 
-This creates the directory /srv/git and starts a git daemon, exporting
-all repositories found. Repositories need to be added manually, but
-will be available once they are created.
+This creates the directory specified by git/server/base_path (default is /srv/git)
+and starts a git daemon, exporting all repositories found. Repositories need to be
+added manually, but will be available once they are created.
 
 License and Author
 ==================
 
-Author:: Joshua Timberman (<joshua@opscode.com>)
-
-Copyright:: 2009-2012, Opscode, Inc.
+- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Copyright:: 2009-2014, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
